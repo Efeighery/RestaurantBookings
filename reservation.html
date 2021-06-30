@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Restaurant Reservation</title>
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/de904db22e.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/login.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Externa JS -->
+  <script defer="defer" src="script.js"></script>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+
+<body onload="getGuestsList()">
+  <!--loading data from Database MongoDB at loading/reloading the page-->
+  <header>
+    <div class="logo">
+      <h3>WebAppDevelopment CA-2 | Restaurant Reservations</h3>
+    </div>
+    <nav>
+      <h4 id="userinfo">User:</h4>
+      <div id="img_avatar">
+      </div>
+      <div class="logout_box">
+        <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i></a>
+      </div>
+    </nav>
+  </header>
+  <div class="container">
+
+    <!--RESERVATION FORM-->
+    <div class="form_box">
+      <form onsubmit="event.preventDefault();onFormSubmit();" autocomplete="off">
+        <h2>Book your table!</h2>
+        <div>
+          <label for="name">Name:</label><label class="validation-error hide" id="fullNameValidationError">This field is
+            required</label>
+          <input type="hidden" name="id" id="id" value="">
+          <input type="text" class="inputF" name="name" id="name" pattern="[A-Za-z]{3,12}"
+            title="The name must  be between 3 and 12 characters in length and contain only letters" required autofocus>
+        </div>
+        <div>
+          <label for="lastName">Last name:</label>
+          <input type="text" class="inputF" name="lastName" id="lastName" pattern="[A-Za-z]{3,12}"
+            title="The name must  be between 3 and 12 characters in length and contain only letters" required>
+        </div>
+        <div>
+          <label for="email">Email:</label>
+          <input type="email" class="inputF" name="email" id="email" required>
+        </div>
+        <div>
+          <label for="noGuests">Table for:</label>
+          <input type="number" class="inputF" name="email" id="noGuests" value="1" min="1" required>
+        </div>
+        <div>
+          <label for="date">Date:</label>
+          <input type="date" class="inputF" name="date" id="date" required>
+        </div>
+        <div>
+          <label for="time">Time:</label>
+          <input type="time" class="inputF" name="time" id="time" required>
+        </div>
+        <div class="form-action-buttons">
+          <input type="submit" class="btn" id="btn_Reservation" value="New Reservation">
+          <!-- <input type="submit" class="btn" id="btn_res" value="New Reservation" onclick="createReservation();"> -->
+          <!--creating a new record-->
+          <!--loading data from database MongoDB-->
+          <!-- <input type="submit" class="btn" id="get" value="Refresh" onclick="getProduct();"> -->
+          <!-- <input type="submit" class="btn" id="get" value="Refresh" onclick="getGuestsList();"> -->
+          <!-- <input type="submit" class="updateRecord btn" value="Update" onclick="update();"> -->
+          <!--update the record-->
+          <input type="reset" class="resetInput btn" value="Reset" onclick="resetForm();">
+          <!--purging the form-->
+        </div>
+      </form>
+    </div>
+    <!--TABLE RESERVATION LIST-->
+    <div class="table_container">
+      <button type="submit" class="btn btn_refresh" id="get" value="Refresh">
+        <!-- <button type="submit" class="btn btn_refresh" id="get" value="Refresh" onclick="getGuestsList();"> -->
+        <i class="fas fa-sync-alt"></i> Refresh table
+      </button>
+      <table class="list" id="GuestsList">
+        <thead>
+          <!--table header-->
+          <tr>
+            <th>Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Table for</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Update </th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!--table data-->
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+<!-- External js files -->
+<script defer="defer" src="js/objects.js"></script>
+<script src="js/login.js"></script>
+<!-- <script src="js/global.js"></script> -->
+
+<script>
+  //checkLogin();
+  showUserInfo();
+</script>
+
+</html>
